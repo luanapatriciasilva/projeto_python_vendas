@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Equipe</h1>
+{% for member in team %}
+    <div>
+        <h3>{{ member.name }}</h3>
+        <p><a href="{{ member.linkedin }}">LinkedIn</a></p>
+    </div>
+{% endfor %}
+{% endblock %}

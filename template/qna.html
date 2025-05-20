@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Tire Suas Dúvidas</h1>
+<form method="post">
+    <input type="text" name="question" placeholder="Digite sua pergunta" required>
+    <button type="submit">Enviar</button>
+</form>
+{% if answer %}
+    <h2>Resposta:</h2>
+    <p>{{ answer }}</p>
+{% endif %}
+{% endblock %}

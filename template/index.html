@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Loja de Programação</h1>
+<form id="filter-form">
+    <select id="category" name="category">
+        <option value="">Todas as categorias</option>
+        {% for cat in categories %}
+            <option value="{{ cat['category'] }}">{{ cat['category'] }}</option>
+        {% endfor %}
+    </select>
+    <input type="number" id="min_price" name="min_price" placeholder="Preço mínimo" step="0.01">
+    <input type="number" id="max_price" name="max_price" placeholder="Preço máximo" step="0.01">
+    <button type="submit">Filtrar</button>
+</form>
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <img src="{{ url_for('static', filename=product['image_path']) }}" alt="{{ product['name'] }}">
+            <h3>{{ product['name'] }}</h3>
+            <p>R$ {{ "%.2f" % product['price'] }}</p>
+            <p>{{ product['category'] }}</p>
+            {% if session.user_id %}
+                <form method="post" action="{{ url_for('cart') }}">
+                    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                    <input type="hidden" name="action" value="add">
+                    <input type="number" name="quantity" value="1" min="1">
+                    <button type="submit">Adicionar ao Carrinho</button>
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dicionário de Termos</h1>
+
+<h2>Adicionar Termo</h2>
+<form method="post">
+    <input type="hidden" name="action" value="add">
+    <input type="text" name="term" placeholder="Termo" required>
+    <input type="text" name="definition" placeholder="Definição" required>
+    <button type="submit">Adicionar</button>
+</form>
+
+<h2>Alterar Termo</h2>
+<form method="post">
+    <input type="hidden" name="action" value="update">
+    <select name="term" required>
+        {% for term in terms %}
+            <option value="{{ term.term }}">{{ term.term }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="definition" placeholder="Nova definição" required>
+    <button type="submit">Alterar</button>
+</form>
+
+<h2>Deletar Termo</h2>
+<form method="post">
+    <input type="hidden" name="action" value="delete">
+    <select name="term" required>
+        {% for term in terms %}
+            <option value="{{ term.term }}">{{ term.term }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Deletar</button>
+</form>
+
+<h2>Termos</h2>
+{% for term in terms %}
+    <div>
+        <h3>{{ term.term }}</h3>
+        <p>{{ term.definition }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

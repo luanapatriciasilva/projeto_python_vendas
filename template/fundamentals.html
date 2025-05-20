@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Fundamentos de Programação em Python</h1>
+
+<h2>Estruturas de Seleção</h2>
+<p>Permitem executar código com base em condições.</p>
+<p><strong>Aplicação</strong>: Escolher entre opções, como verificar se um usuário é maior de idade.</p>
+<pre>
+idade = 20
+if idade >= 18:
+    print("Maior de idade")
+else:
+    print("Menor de idade")
+</pre>
+
+<h2>Estruturas de Repetição</h2>
+<p>Executam um bloco de código várias vezes.</p>
+<p><strong>Aplicação</strong>: Listar itens de um carrinho.</p>
+<pre>
+for i in range(5):
+    print(f"Item {i+1}")
+</pre>
+
+<h2>Vetores e Matrizes</h2>
+<p>Armazenam coleções de dados.</p>
+<p><strong>Aplicação</strong>: Gerenciar listas de produtos.</p>
+<pre>
+produtos = ["Camiseta", "Calça"]
+matriz = [[1, 2], [3, 4]]
+print(produtos[0])  # Camiseta
+</pre>
+
+<h2>Funções e Procedimentos</h2>
+<p>Blocos de código reutilizáveis.</p>
+<p><strong>Aplicação</strong>: Calcular o total de um carrinho.</p>
+<pre>
+def calcular_total(precos):
+    return sum(precos)
+</pre>
+
+<h2>Tratamento de Exceção</h2>
+<p>Gerencia erros no programa.</p>
+<p><strong>Aplicação</strong>: Evitar falhas ao acessar um arquivo.</p>
+<pre>
+try:
+    with open("arquivo.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("Arquivo não encontrado")
+</pre>
+{% endblock %}

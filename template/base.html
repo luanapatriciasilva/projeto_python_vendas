@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Programação</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Loja</a></li>
+                <li><a href="{{ url_for('fundamentals') }}">Fundamentos</a></li>
+                <li><a href="{{ url_for('qna') }}">Tire Dúvidas</a></li>
+                <li><a href="{{ url_for('dictionary') }}">Dicionário</a></li>
+                <li><a href="{{ url_for('team') }}">Equipe</a></li>
+                {% if session.username %}
+                    <li><a href="{{ url_for('cart') }}">Carrinho</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair ({{ session.username }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Registrar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

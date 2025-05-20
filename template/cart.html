@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Carrinho de Compras</h1>
+{% if cart_items %}
+    <div class="product-grid">
+        {% for item in cart_items %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename=item['image_path']) }}" alt="{{ item['name'] }}">
+                <h3>{{ item['name'] }}</h3>
+                <p>R$ {{ "%.2f" % item['price'] }} x {{ item['quantity'] }}</p>
+                <form method="post" action="{{ url_for('cart') }}">
+                    <input type="hidden" name="product_id" value="{{ item['id'] }}">
+                    <input type="hidden" name="action" value="remove">
+                    <button type="submit" class="remove">Remover</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Seu carrinho está vazio.</p>
+{% endif %}
+{% endblock %}
